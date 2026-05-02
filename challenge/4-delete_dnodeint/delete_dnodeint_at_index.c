@@ -21,17 +21,18 @@ int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
         return (1);
     }
 
-    /* الوصول للعنصر المطلوب */
+    /* الوصول للعقدة المطلوبة */
     while (temp != NULL && i < index)
     {
         temp = temp->next;
         i++;
     }
 
+    /* إذا index خارج القائمة */
     if (temp == NULL)
         return (-1);
 
-    /* ربط العناصر قبل وبعد الحذف */
+    /* ربط العقدة السابقة مع التالية */
     if (temp->prev != NULL)
         temp->prev->next = temp->next;
 
@@ -39,5 +40,6 @@ int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
         temp->next->prev = temp->prev;
 
     free(temp);
+
     return (1);
 }
